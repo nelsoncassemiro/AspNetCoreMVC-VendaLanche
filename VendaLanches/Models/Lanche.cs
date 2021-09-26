@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,14 +15,16 @@ namespace VendaLanches.Models
         [StringLength(100)]
         public string DescricaoCurta { get; set; }
         [StringLength(255)]
-        public int DescricaoDetalhada { get; set; }
+        public string DescricaoDetalhada { get; set; }
+        [Column(TypeName="decimal(18,2)")]
         public decimal Preco { get; set; }
         [StringLength(200)]
         public string ImagemUrl { get; set; }
         [StringLength(200)]
         public string ImagemThumbnailUrl { get; set; }
+        public bool IsLanchePreferido { get; set; }
         public bool EmEstoque { get; set; }
-        public bool CategoraId { get; set; }
+        public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
     }
 }

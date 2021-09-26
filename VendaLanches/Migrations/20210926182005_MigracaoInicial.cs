@@ -28,13 +28,13 @@ namespace VendaLanches.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     DescricaoCurta = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    DescricaoDetalhada = table.Column<int>(type: "int", maxLength: 255, nullable: false),
+                    DescricaoDetalhada = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImagemUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     ImagemThumbnailUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    IsLanchePreferido = table.Column<bool>(type: "bit", nullable: false),
                     EmEstoque = table.Column<bool>(type: "bit", nullable: false),
-                    CategoraId = table.Column<bool>(type: "bit", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: true)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace VendaLanches.Migrations
                         column: x => x.CategoriaId,
                         principalTable: "Categorias",
                         principalColumn: "CategoriaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
